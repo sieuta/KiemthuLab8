@@ -43,5 +43,11 @@ public class TestCalculator {
         calculator.div(0);
         Assert.assertEquals(0, calculator.getResult());
     }
+    @Test
+    public void testCorrect() {
+        calculator.plus(12);
+        calculator.minus(5);
+        Assert.assertEquals(7, calculator.getResult());
+    }
 }
 
