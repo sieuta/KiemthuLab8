@@ -1,0 +1,41 @@
+# This is the CI configuration file for the Calculator App using GitHub Actions.
+
+name: CI for Calculator App
+
+# Trigger the workflow on specific events (push to certain branches and pull request)
+on:
+  # Trigger when pushing to the 'master' or 'test-branch' branches
+  push:
+    branches:
+      - master
+      - lab8
+  # Trigger when a pull request is created to 'master' or 'test-branch'
+  pull_request:
+    branches:
+      - master
+      - lab8
+
+jobs:
+  build:
+    # The job will run on the latest version of Ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code from the GitHub repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Java 11 for the build environment
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '21'  # Specify Java version to use for Maven build
+          distribution: 'temurin'
+
+      # Step 3: Build the project using Maven (clean install)
+      - name: Build with Maven
+        run: mvn clean install  # This will clean and install the dependencies
+
+      # Step 4: Run unit tests with Maven (mvn test)
+      - name: Run Tests
+        run: mvn test  # This will execute the tests and show the results in the Actions tab
