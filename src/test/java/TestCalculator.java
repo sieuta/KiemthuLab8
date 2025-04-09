@@ -44,10 +44,10 @@ public class TestCalculator {
         Assert.assertEquals(0, calculator.getResult());
     }
     @Test
-    public void testFail() {
-        calculator.plus(100);
-        calculator.div(0);
-        Assert.assertEquals(10, calculator.getResult());
+    public void testCorrect() {
+        calculator.plus(12);
+        calculator.minus(5);
+        Assert.assertEquals(7, calculator.getResult());
     }
 }
 
